@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_3262fa71f2886bd7f6b526bc1f8b285f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    
+                    <style>
+                        .foliumtooltip {
+                            
+                        }
+                       .foliumtooltip table{
+                            margin: auto;
+                        }
+                        .foliumtooltip tr{
+                            text-align: left;
+                        }
+                        .foliumtooltip th{
+                            padding: 2px; padding-right: 8px;
+                        }
+                    </style>
+            
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_3262fa71f2886bd7f6b526bc1f8b285f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_3262fa71f2886bd7f6b526bc1f8b285f = L.map(
+                "map_3262fa71f2886bd7f6b526bc1f8b285f",
+                {
+                    center: [47.41237115, 9.633029350000001],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+            L.control.scale().addTo(map_3262fa71f2886bd7f6b526bc1f8b285f);
+
+            
+
+        
+    
+            var tile_layer_3a2df0ccf2419186f0e99d99de044d48 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_3a2df0ccf2419186f0e99d99de044d48.addTo(map_3262fa71f2886bd7f6b526bc1f8b285f);
+        
+    
+            map_3262fa71f2886bd7f6b526bc1f8b285f.fitBounds(
+                [[47.4087749, 9.6263331], [47.4159674, 9.6397256]],
+                {}
+            );
+        
+    
+        function geo_json_5776b93af9f3429adcf4d013df7cb6c4_styler(feature) {
+            switch(feature.id) {
+                default:
+                    return {"fillOpacity": 0.5, "weight": 2};
+            }
+        }
+        function geo_json_5776b93af9f3429adcf4d013df7cb6c4_highlighter(feature) {
+            switch(feature.id) {
+                default:
+                    return {"fillOpacity": 0.75};
+            }
+        }
+        function geo_json_5776b93af9f3429adcf4d013df7cb6c4_pointToLayer(feature, latlng) {
+            var opts = {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 2, "stroke": true, "weight": 3};
+            
+            let style = geo_json_5776b93af9f3429adcf4d013df7cb6c4_styler(feature)
+            Object.assign(opts, style)
+            
+            return new L.CircleMarker(latlng, opts)
+        }
+
+        function geo_json_5776b93af9f3429adcf4d013df7cb6c4_onEachFeature(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                            geo_json_5776b93af9f3429adcf4d013df7cb6c4.resetStyle(e.target);
+                    }
+                },
+                mouseover: function(e) {
+                    if(typeof e.target.setStyle === "function"){
+                        const highlightStyle = geo_json_5776b93af9f3429adcf4d013df7cb6c4_highlighter(e.target.feature)
+                        e.target.setStyle(highlightStyle);
+                    }
+                },
+            });
+        };
+        var geo_json_5776b93af9f3429adcf4d013df7cb6c4 = L.geoJson(null, {
+                onEachFeature: geo_json_5776b93af9f3429adcf4d013df7cb6c4_onEachFeature,
+            
+                style: geo_json_5776b93af9f3429adcf4d013df7cb6c4_styler,
+                pointToLayer: geo_json_5776b93af9f3429adcf4d013df7cb6c4_pointToLayer,
+        });
+
+        function geo_json_5776b93af9f3429adcf4d013df7cb6c4_add (data) {
+            geo_json_5776b93af9f3429adcf4d013df7cb6c4
+                .addData(data);
+        }
+            geo_json_5776b93af9f3429adcf4d013df7cb6c4_add({"bbox": [9.6263331, 47.4087749, 9.6397256, 47.4159674], "features": [{"bbox": [9.6370767, 47.4122956, 9.6384383, 47.4131695], "geometry": {"coordinates": [[[9.6370767, 47.4122956], [9.6370767, 47.4131695], [9.6384383, 47.4131695], [9.6384383, 47.4122956], [9.6370767, 47.4122956]]], "type": "Polygon"}, "id": "0", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51976646}, "type": "Feature"}, {"bbox": [9.6371138, 47.4131947, 9.6384755, 47.4140685], "geometry": {"coordinates": [[[9.6371138, 47.4131947], [9.6371138, 47.4140685], [9.6384755, 47.4140685], [9.6384755, 47.4131947], [9.6371138, 47.4131947]]], "type": "Polygon"}, "id": "1", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51986843}, "type": "Feature"}, {"bbox": [9.638364, 47.4113713, 9.6397256, 47.4122452], "geometry": {"coordinates": [[[9.638364, 47.4113713], [9.638364, 47.4122452], [9.6397256, 47.4122452], [9.6397256, 47.4113713], [9.638364, 47.4113713]]], "type": "Polygon"}, "id": "4", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51976645}, "type": "Feature"}, {"bbox": [9.6383269, 47.4104723, 9.6396885, 47.4113461], "geometry": {"coordinates": [[[9.6383269, 47.4104723], [9.6383269, 47.4113461], [9.6396885, 47.4113461], [9.6396885, 47.4104723], [9.6383269, 47.4104723]]], "type": "Polygon"}, "id": "6", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51966449}, "type": "Feature"}, {"bbox": [9.6370025, 47.4104975, 9.638364, 47.4113713], "geometry": {"coordinates": [[[9.6370025, 47.4104975], [9.6370025, 47.4113713], [9.638364, 47.4113713], [9.638364, 47.4104975], [9.6370025, 47.4104975]]], "type": "Polygon"}, "id": "8", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51956255}, "type": "Feature"}, {"bbox": [9.6370396, 47.4113966, 9.6384012, 47.4122704], "geometry": {"coordinates": [[[9.6370396, 47.4113966], [9.6370396, 47.4122704], [9.6384012, 47.4122704], [9.6384012, 47.4113966], [9.6370396, 47.4113966]]], "type": "Polygon"}, "id": "9", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51966450}, "type": "Feature"}, {"bbox": [9.6356409, 47.4096236, 9.6370025, 47.4104975], "geometry": {"coordinates": [[[9.6356409, 47.4096236], [9.6356409, 47.4104975], [9.6370025, 47.4104975], [9.6370025, 47.4096236], [9.6356409, 47.4096236]]], "type": "Polygon"}, "id": "12", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51935869}, "type": "Feature"}, {"bbox": [9.635678, 47.4105227, 9.6370396, 47.4113966], "geometry": {"coordinates": [[[9.635678, 47.4105227], [9.635678, 47.4113966], [9.6370396, 47.4113966], [9.6370396, 47.4105227], [9.635678, 47.4105227]]], "type": "Polygon"}, "id": "13", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51946062}, "type": "Feature"}, {"bbox": [9.6369653, 47.4095984, 9.6383269, 47.4104723], "geometry": {"coordinates": [[[9.6369653, 47.4095984], [9.6369653, 47.4104723], [9.6383269, 47.4104723], [9.6383269, 47.4095984], [9.6369653, 47.4095984]]], "type": "Polygon"}, "id": "14", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51946061}, "type": "Feature"}, {"bbox": [9.6263331, 47.4089005, 9.6276945, 47.4097745], "geometry": {"coordinates": [[[9.6263331, 47.4089005], [9.6263331, 47.4097745], [9.6276945, 47.4097745], [9.6276945, 47.4089005], [9.6263331, 47.4089005]]], "type": "Polygon"}, "id": "16", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51854368}, "type": "Feature"}, {"bbox": [9.6276945, 47.4097745, 9.6290559, 47.4106484], "geometry": {"coordinates": [[[9.6276945, 47.4097745], [9.6276945, 47.4106484], [9.6290559, 47.4106484], [9.6290559, 47.4097745], [9.6276945, 47.4097745]]], "type": "Polygon"}, "id": "17", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51874738}, "type": "Feature"}, {"bbox": [9.6289819, 47.4088503, 9.6303433, 47.4097243], "geometry": {"coordinates": [[[9.6289819, 47.4088503], [9.6289819, 47.4097243], [9.6303433, 47.4097243], [9.6303433, 47.4088503], [9.6289819, 47.4088503]]], "type": "Polygon"}, "id": "18", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51874737}, "type": "Feature"}, {"bbox": [9.6290189, 47.4097494, 9.6303803, 47.4106233], "geometry": {"coordinates": [[[9.6290189, 47.4097494], [9.6290189, 47.4106233], [9.6303803, 47.4106233], [9.6303803, 47.4097494], [9.6290189, 47.4097494]]], "type": "Polygon"}, "id": "19", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51884924}, "type": "Feature"}, {"bbox": [9.6290559, 47.4106484, 9.6304173, 47.4115224], "geometry": {"coordinates": [[[9.6290559, 47.4106484], [9.6290559, 47.4115224], [9.6304173, 47.4115224], [9.6304173, 47.4106484], [9.6290559, 47.4106484]]], "type": "Polygon"}, "id": "20", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51895112}, "type": "Feature"}, {"bbox": [9.6276575, 47.4088754, 9.6290189, 47.4097494], "geometry": {"coordinates": [[[9.6276575, 47.4088754], [9.6276575, 47.4097494], [9.6290189, 47.4097494], [9.6290189, 47.4088754], [9.6276575, 47.4088754]]], "type": "Polygon"}, "id": "22", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51864552}, "type": "Feature"}, {"bbox": [9.6303063, 47.4088252, 9.6316677, 47.4096991], "geometry": {"coordinates": [[[9.6303063, 47.4088252], [9.6303063, 47.4096991], [9.6316677, 47.4096991], [9.6316677, 47.4088252], [9.6303063, 47.4088252]]], "type": "Polygon"}, "id": "23", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51884923}, "type": "Feature"}, {"bbox": [9.6303433, 47.4097243, 9.6317047, 47.4105982], "geometry": {"coordinates": [[[9.6303433, 47.4097243], [9.6303433, 47.4105982], [9.6317047, 47.4105982], [9.6317047, 47.4097243], [9.6303433, 47.4097243]]], "type": "Polygon"}, "id": "25", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51895111}, "type": "Feature"}, {"bbox": [9.6303803, 47.4106233, 9.6317418, 47.4114972], "geometry": {"coordinates": [[[9.6303803, 47.4106233], [9.6303803, 47.4114972], [9.6317418, 47.4114972], [9.6317418, 47.4106233], [9.6303803, 47.4106233]]], "type": "Polygon"}, "id": "26", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51905300}, "type": "Feature"}, {"bbox": [9.6304173, 47.4115224, 9.6317788, 47.4123963], "geometry": {"coordinates": [[[9.6304173, 47.4115224], [9.6304173, 47.4123963], [9.6317788, 47.4123963], [9.6317788, 47.4115224], [9.6304173, 47.4115224]]], "type": "Polygon"}, "id": "28", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51915490}, "type": "Feature"}, {"bbox": [9.6290929, 47.4115475, 9.6304543, 47.4124214], "geometry": {"coordinates": [[[9.6290929, 47.4115475], [9.6290929, 47.4124214], [9.6304543, 47.4124214], [9.6304543, 47.4115475], [9.6290929, 47.4115475]]], "type": "Polygon"}, "id": "30", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51905301}, "type": "Feature"}, {"bbox": [9.6304543, 47.4124214, 9.6318159, 47.4132954], "geometry": {"coordinates": [[[9.6304543, 47.4124214], [9.6304543, 47.4132954], [9.6318159, 47.4132954], [9.6318159, 47.4124214], [9.6304543, 47.4124214]]], "type": "Polygon"}, "id": "32", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51925681}, "type": "Feature"}, {"bbox": [9.6317788, 47.4123963, 9.6331403, 47.4132702], "geometry": {"coordinates": [[[9.6317788, 47.4123963], [9.6317788, 47.4132702], [9.6331403, 47.4132702], [9.6331403, 47.4123963], [9.6317788, 47.4123963]]], "type": "Polygon"}, "id": "34", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51935872}, "type": "Feature"}, {"bbox": [9.6331033, 47.4123712, 9.6344648, 47.413245], "geometry": {"coordinates": [[[9.6331033, 47.4123712], [9.6331033, 47.413245], [9.6344648, 47.413245], [9.6344648, 47.4123712], [9.6331033, 47.4123712]]], "type": "Polygon"}, "id": "35", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51946064}, "type": "Feature"}, {"bbox": [9.6330662, 47.4114721, 9.6344278, 47.412346], "geometry": {"coordinates": [[[9.6330662, 47.4114721], [9.6330662, 47.412346], [9.6344278, 47.412346], [9.6344278, 47.4114721], [9.6330662, 47.4114721]]], "type": "Polygon"}, "id": "36", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51935871}, "type": "Feature"}, {"bbox": [9.6343907, 47.4114469, 9.6357522, 47.4123208], "geometry": {"coordinates": [[[9.6343907, 47.4114469], [9.6343907, 47.4123208], [9.6357522, 47.4123208], [9.6357522, 47.4114469], [9.6343907, 47.4114469]]], "type": "Polygon"}, "id": "38", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51946063}, "type": "Feature"}, {"bbox": [9.6344278, 47.412346, 9.6357893, 47.4132199], "geometry": {"coordinates": [[[9.6344278, 47.412346], [9.6344278, 47.4132199], [9.6357893, 47.4132199], [9.6357893, 47.412346], [9.6344278, 47.412346]]], "type": "Polygon"}, "id": "39", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51956257}, "type": "Feature"}, {"bbox": [9.6317418, 47.4114972, 9.6331033, 47.4123712], "geometry": {"coordinates": [[[9.6317418, 47.4114972], [9.6317418, 47.4123712], [9.6331033, 47.4123712], [9.6331033, 47.4114972], [9.6317418, 47.4114972]]], "type": "Polygon"}, "id": "40", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51925680}, "type": "Feature"}, {"bbox": [9.6316677, 47.4096991, 9.6330292, 47.410573], "geometry": {"coordinates": [[[9.6316677, 47.4096991], [9.6316677, 47.410573], [9.6330292, 47.410573], [9.6330292, 47.4096991], [9.6316677, 47.4096991]]], "type": "Polygon"}, "id": "42", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51905299}, "type": "Feature"}, {"bbox": [9.6317047, 47.4105982, 9.6330662, 47.4114721], "geometry": {"coordinates": [[[9.6317047, 47.4105982], [9.6317047, 47.4114721], [9.6330662, 47.4114721], [9.6330662, 47.4105982], [9.6317047, 47.4105982]]], "type": "Polygon"}, "id": "43", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51915489}, "type": "Feature"}, {"bbox": [9.6329921, 47.409674, 9.6343536, 47.4105479], "geometry": {"coordinates": [[[9.6329921, 47.409674], [9.6329921, 47.4105479], [9.6343536, 47.4105479], [9.6343536, 47.409674], [9.6329921, 47.409674]]], "type": "Polygon"}, "id": "44", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51915488}, "type": "Feature"}, {"bbox": [9.6330292, 47.410573, 9.6343907, 47.4114469], "geometry": {"coordinates": [[[9.6330292, 47.410573], [9.6330292, 47.4114469], [9.6343907, 47.4114469], [9.6343907, 47.410573], [9.6330292, 47.410573]]], "type": "Polygon"}, "id": "45", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51925679}, "type": "Feature"}, {"bbox": [9.6316307, 47.4088001, 9.6329921, 47.409674], "geometry": {"coordinates": [[[9.6316307, 47.4088001], [9.6316307, 47.409674], [9.6329921, 47.409674], [9.6329921, 47.4088001], [9.6316307, 47.4088001]]], "type": "Polygon"}, "id": "49", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51895110}, "type": "Feature"}, {"bbox": [9.632955, 47.4087749, 9.6343165, 47.4096488], "geometry": {"coordinates": [[[9.632955, 47.4087749], [9.632955, 47.4096488], [9.6343165, 47.4096488], [9.6343165, 47.4087749], [9.632955, 47.4087749]]], "type": "Polygon"}, "id": "50", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51905298}, "type": "Feature"}, {"bbox": [9.6343165, 47.4096488, 9.635678, 47.4105227], "geometry": {"coordinates": [[[9.6343165, 47.4096488], [9.6343165, 47.4105227], [9.635678, 47.4105227], [9.635678, 47.4096488], [9.6343165, 47.4096488]]], "type": "Polygon"}, "id": "51", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51925678}, "type": "Feature"}, {"bbox": [9.6343536, 47.4105479, 9.6357151, 47.4114217], "geometry": {"coordinates": [[[9.6343536, 47.4105479], [9.6343536, 47.4114217], [9.6357151, 47.4114217], [9.6357151, 47.4105479], [9.6343536, 47.4105479]]], "type": "Polygon"}, "id": "52", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51935870}, "type": "Feature"}, {"bbox": [9.6357151, 47.4114217, 9.6370767, 47.4122956], "geometry": {"coordinates": [[[9.6357151, 47.4114217], [9.6357151, 47.4122956], [9.6370767, 47.4122956], [9.6370767, 47.4114217], [9.6357151, 47.4114217]]], "type": "Polygon"}, "id": "53", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51956256}, "type": "Feature"}, {"bbox": [9.6357522, 47.4123208, 9.6371138, 47.4131947], "geometry": {"coordinates": [[[9.6357522, 47.4123208], [9.6357522, 47.4131947], [9.6371138, 47.4131947], [9.6371138, 47.4123208], [9.6357522, 47.4123208]]], "type": "Polygon"}, "id": "54", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51966451}, "type": "Feature"}, {"bbox": [9.6358265, 47.4141189, 9.6371881, 47.4149928], "geometry": {"coordinates": [[[9.6358265, 47.4141189], [9.6358265, 47.4149928], [9.6371881, 47.4149928], [9.6371881, 47.4141189], [9.6358265, 47.4141189]]], "type": "Polygon"}, "id": "55", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51986844}, "type": "Feature"}, {"bbox": [9.6357893, 47.4132199, 9.637151, 47.4140937], "geometry": {"coordinates": [[[9.6357893, 47.4132199], [9.6357893, 47.4140937], [9.637151, 47.4140937], [9.637151, 47.4132199], [9.6357893, 47.4132199]]], "type": "Polygon"}, "id": "56", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51976647}, "type": "Feature"}, {"bbox": [9.6344648, 47.413245, 9.6358265, 47.4141189], "geometry": {"coordinates": [[[9.6344648, 47.413245], [9.6344648, 47.4141189], [9.6358265, 47.4141189], [9.6358265, 47.413245], [9.6344648, 47.413245]]], "type": "Polygon"}, "id": "57", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51966452}, "type": "Feature"}, {"bbox": [9.6345019, 47.4141441, 9.6358636, 47.415018], "geometry": {"coordinates": [[[9.6345019, 47.4141441], [9.6345019, 47.415018], [9.6358636, 47.415018], [9.6358636, 47.4141441], [9.6345019, 47.4141441]]], "type": "Polygon"}, "id": "58", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51976648}, "type": "Feature"}, {"bbox": [9.6318159, 47.4132954, 9.6331774, 47.4141693], "geometry": {"coordinates": [[[9.6318159, 47.4132954], [9.6318159, 47.4141693], [9.6331774, 47.4141693], [9.6331774, 47.4132954], [9.6318159, 47.4132954]]], "type": "Polygon"}, "id": "59", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51946065}, "type": "Feature"}, {"bbox": [9.6318529, 47.4141944, 9.6332145, 47.4150683], "geometry": {"coordinates": [[[9.6318529, 47.4141944], [9.6318529, 47.4150683], [9.6332145, 47.4150683], [9.6332145, 47.4141944], [9.6318529, 47.4141944]]], "type": "Polygon"}, "id": "60", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51956259}, "type": "Feature"}, {"bbox": [9.6331403, 47.4132702, 9.6345019, 47.4141441], "geometry": {"coordinates": [[[9.6331403, 47.4132702], [9.6331403, 47.4141441], [9.6345019, 47.4141441], [9.6345019, 47.4132702], [9.6331403, 47.4132702]]], "type": "Polygon"}, "id": "63", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51956258}, "type": "Feature"}, {"bbox": [9.6318899, 47.4150935, 9.6332515, 47.4159674], "geometry": {"coordinates": [[[9.6318899, 47.4150935], [9.6318899, 47.4159674], [9.6332515, 47.4159674], [9.6332515, 47.4150935], [9.6318899, 47.4150935]]], "type": "Polygon"}, "id": "64", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51966454}, "type": "Feature"}, {"bbox": [9.6332145, 47.4150683, 9.6345761, 47.4159422], "geometry": {"coordinates": [[[9.6332145, 47.4150683], [9.6332145, 47.4159422], [9.6345761, 47.4159422], [9.6345761, 47.4150683], [9.6332145, 47.4150683]]], "type": "Polygon"}, "id": "65", "properties": {"1km_tileId": 51823820, "PLZ": 9435, "tile_Id": 51976649}, "type": "Feature"}, {"bbox": [9.6331774, 47.4141693, 9.634539, 47.4150432], "geometry": {"coordinates": [[[9.6331774, 47.4141693], [9.6331774, 47.4150432], [9.634539, 47.4150432], [9.634539, 47.4141693], [9.6331774, 47.4141693]]], "type": "Polygon"}, "id": "67", "properties": {"1km_tileId": 51823820, "PLZ": 9443, "tile_Id": 51966453}, "type": "Feature"}], "type": "FeatureCollection"});
+
+        
+    
+    geo_json_5776b93af9f3429adcf4d013df7cb6c4.bindTooltip(
+    function(layer){
+    let div = L.DomUtil.create('div');
+    
+    let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
+    let fields = ["PLZ", "tile_Id", "1km_tileId"];
+    let aliases = ["PLZ", "tile_Id", "1km_tileId"];
+    let table = '<table>' +
+        String(
+        fields.map(
+        (v,i)=>
+        `<tr>
+            <th>${aliases[i]}</th>
+            
+            <td>${handleObject(layer.feature.properties[v])}</td>
+        </tr>`).join(''))
+    +'</table>';
+    div.innerHTML=table;
+    
+    return div
+    }
+    ,{"className": "foliumtooltip", "sticky": true});
+                     
+    
+            geo_json_5776b93af9f3429adcf4d013df7cb6c4.addTo(map_3262fa71f2886bd7f6b526bc1f8b285f);
+        
+</script>
+</html>
